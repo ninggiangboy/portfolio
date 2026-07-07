@@ -40,6 +40,21 @@ export type SectionIntro = {
   description: string;
 };
 
+export type BlogIntroCopy = {
+  eyebrow: string;
+  title: string;
+  description: string;
+};
+
+export type BlogUiCopy = {
+  backToBlog: string;
+  readArticle: string;
+  publishedOn: string;
+  emptyState: string;
+  tocTitle: string;
+  scrollToTopLabel: string;
+};
+
 export const profile = {
   name: "Ha Duy Khanh",
   handle: "ninggiangboy",
@@ -239,6 +254,27 @@ export const footerCopy = {
   cta: "Email me",
   description:
     "I am open to conversations about backend platforms, full-stack product work, and teams building reliable software.",
+};
+
+export const blogIntro: BlogIntroCopy = {
+  eyebrow: "Blog",
+  title: "Writing on systems, product, and craft",
+  description:
+    "Notes on backend architecture, product engineering, and the tradeoffs that shape maintainable software.",
+};
+
+export const blogUiCopy: BlogUiCopy = {
+  backToBlog: "Back to blog",
+  readArticle: "Read article",
+  publishedOn: "Published",
+  emptyState: "No posts available for this locale yet.",
+  tocTitle: "On this page",
+  scrollToTopLabel: "Back to top",
+};
+
+export const blogSwitcherLabel: Record<"en" | "vi", string> = {
+  en: "Switch to English version",
+  vi: "Switch to Vietnamese version",
 };
 
 export const metadataCopy = {

@@ -3,21 +3,31 @@ import { BigCta } from "./big-cta";
 import { Reveal } from "./reveal";
 import { SocialLinks } from "./social-links";
 
-export function Footer() {
+type FooterProps = {
+  socialOnly?: boolean;
+};
+
+export function Footer({ socialOnly = false }: FooterProps) {
   return (
     <footer id="contact" className="scroll-mt-20 border-t border-line">
-      <div className="mx-auto max-w-[1400px] px-6 py-24 md:px-10 md:py-32">
-        <Reveal>
-          <p className="font-mono text-sm text-muted">{footerCopy.eyebrow}</p>
-          <div className="mt-6">
-            <BigCta href={`mailto:${profile.email}`} label={footerCopy.cta} />
-          </div>
-          <p className="mt-6 max-w-md leading-relaxed text-muted">
-            {footerCopy.description}
-          </p>
-        </Reveal>
+      <div
+        className={`mx-auto max-w-[1400px] px-6 md:px-10 ${
+          socialOnly ? "py-10 md:py-12" : "py-24 md:py-32"
+        }`}
+      >
+        {socialOnly ? null : (
+          <Reveal>
+            <p className="font-mono text-sm text-muted">{footerCopy.eyebrow}</p>
+            <div className="mt-6">
+              <BigCta href={`mailto:${profile.email}`} label={footerCopy.cta} />
+            </div>
+            <p className="mt-6 max-w-md leading-relaxed text-muted">
+              {footerCopy.description}
+            </p>
+          </Reveal>
+        )}
 
-        <div className="mt-16">
+        <div className={socialOnly ? "" : "mt-16"}>
           <SocialLinks />
         </div>
       </div>

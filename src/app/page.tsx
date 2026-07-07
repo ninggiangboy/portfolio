@@ -1,5 +1,6 @@
 import { About } from "@/components/about";
 import { Approach } from "@/components/approach";
+import { BlogTeaser } from "@/components/blog-teaser";
 import { Experience } from "@/components/experience";
 import { Footer } from "@/components/footer";
 import { Hero } from "@/components/hero";
@@ -17,6 +18,7 @@ export default function Home() {
       <Work />
       <Experience />
       <Now />
+      <BlogTeaser />
       <Footer />
     </main>
   );
