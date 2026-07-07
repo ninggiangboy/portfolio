@@ -1,4 +1,4 @@
-import { nowEntries } from "@/lib/data";
+import { nowEntries, sectionCopy } from "@/lib/data";
 import { Reveal } from "./reveal";
 
 export function Now() {
@@ -7,11 +7,10 @@ export function Now() {
       <div className="mx-auto max-w-[1400px] px-6 py-24 md:px-10 md:py-32">
         <Reveal>
           <h2 className="text-4xl font-medium tracking-tighter md:text-5xl">
-            Now
+            {sectionCopy.now.title}
           </h2>
           <p className="mt-4 max-w-[55ch] leading-relaxed text-muted">
-            What I am doing at the moment. Less a status board, more a note to
-            myself.
+            {sectionCopy.now.description}
           </p>
         </Reveal>
 

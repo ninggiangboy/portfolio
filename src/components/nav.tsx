@@ -3,6 +3,7 @@
 import { List, X } from "@phosphor-icons/react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { heroCopy, profile } from "@/lib/data";
 import { CtaLink } from "./cta";
 
 const links = [
@@ -50,8 +51,8 @@ export function Nav() {
             </Link>
           ))}
           <CtaLink
-            href="mailto:haduykhanh.hs@gmail.com"
-            label="Email me"
+            href={`mailto:${profile.email}`}
+            label={heroCopy.primaryCta}
             variant="ghost"
           />
         </div>
@@ -86,8 +87,8 @@ export function Nav() {
             ))}
             <div className="mt-4">
               <CtaLink
-                href="mailto:haduykhanh.hs@gmail.com"
-                label="Email me"
+                href={`mailto:${profile.email}`}
+                label={heroCopy.primaryCta}
                 variant="primary"
               />
             </div>

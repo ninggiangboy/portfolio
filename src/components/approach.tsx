@@ -1,4 +1,4 @@
-import { patterns } from "@/lib/data";
+import { patterns, sectionCopy } from "@/lib/data";
 import { Reveal } from "./reveal";
 
 export function Approach() {
@@ -7,11 +7,10 @@ export function Approach() {
       <div className="mx-auto max-w-[1400px] px-6 py-24 md:px-10 md:py-32">
         <Reveal>
           <h2 className="text-4xl font-medium tracking-tighter md:text-5xl">
-            Approach
+            {sectionCopy.approach.title}
           </h2>
           <p className="mt-4 max-w-[55ch] leading-relaxed text-muted">
-            The architecture I reach for, on anything bigger than a script. Not
-            dogma, just the patterns that have stayed useful.
+            {sectionCopy.approach.description}
           </p>
         </Reveal>
 

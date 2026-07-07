@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Nav } from "@/components/nav";
+import { metadataCopy, profile } from "@/lib/data";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -14,10 +15,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Ha Duy Khanh | Full-stack Developer",
-  description:
-    "Full-stack developer building distributed systems. Based in Ha Noi, Vietnam.",
-  authors: { name: "Ha Duy Khanh" },
+  title: metadataCopy.title,
+  description: metadataCopy.description,
+  authors: { name: profile.name },
   keywords: [
     "full-stack developer",
     "Go",
@@ -27,21 +27,20 @@ export const metadata: Metadata = {
     "Kafka",
     "modular monolith",
     "event-driven",
-    "Ha Noi",
+    "Hanoi",
     "portfolio",
     "ninggiangboy",
   ],
   openGraph: {
-    title: "Ha Duy Khanh | Full-stack Developer",
-    description:
-      "Full-stack developer building distributed systems. Based in Ha Noi, Vietnam.",
+    title: metadataCopy.title,
+    description: metadataCopy.description,
     type: "profile",
     locale: "en",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ha Duy Khanh | Full-stack Developer",
-    description: "Full-stack developer building distributed systems.",
+    title: metadataCopy.title,
+    description: metadataCopy.description,
   },
 };
 

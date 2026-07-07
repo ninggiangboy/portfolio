@@ -35,16 +35,20 @@ export type NowEntry = {
   detail: string;
 };
 
+export type SectionIntro = {
+  title: string;
+  description: string;
+};
+
 export const profile = {
   name: "Ha Duy Khanh",
   handle: "ninggiangboy",
-  role: "Full-stack Developer",
-  based: "Ha Noi, Vietnam",
+  role: "Full-Stack Developer",
+  based: "Hanoi, Vietnam",
   email: "haduykhanh.hs@gmail.com",
   avatar: "https://avatars.githubusercontent.com/u/75935431?s=400&v=4",
-  quote: "What we need is not sensitivity but a measuring stick.",
   positioning:
-    "Full-stack developer building distributed backends with modular monoliths and a transactional outbox.",
+    "Full-stack developer building reliable backend platforms and thoughtful product interfaces, with a focus on event-driven systems and maintainable architecture.",
 };
 
 export const socials: Social[] = [
@@ -83,7 +87,7 @@ export const socials: Social[] = [
 export const stack: StackGroup[] = [
   {
     label: "Backend",
-    note: "Java and Kotlin in the Spring ecosystem, Go for production services.",
+    note: "Go, Java, and Kotlin for backend services that stay clear under load and easy to evolve.",
     items: [
       { name: "Java", slug: "openjdk" },
       { name: "Spring Boot", slug: "springboot" },
@@ -93,7 +97,7 @@ export const stack: StackGroup[] = [
   },
   {
     label: "Data",
-    note: "Postgres for truth, Redis for hot paths, Kafka for events, ClickHouse for analytics.",
+    note: "Data systems chosen for clear ownership, fast paths, event streams, and practical analytics.",
     items: [
       { name: "PostgreSQL", slug: "postgresql" },
       { name: "Redis", slug: "redis" },
@@ -103,7 +107,7 @@ export const stack: StackGroup[] = [
   },
   {
     label: "Frontend",
-    note: "React and Vue, depending on the project. TypeScript always.",
+    note: "TypeScript-first interfaces in React or Vue, built to stay aligned with backend boundaries.",
     items: [
       { name: "React", slug: "react" },
       { name: "Next.js", slug: "nextdotjs" },
@@ -114,7 +118,7 @@ export const stack: StackGroup[] = [
   },
   {
     label: "Platform",
-    note: "Containers, orchestration, and an observability stack I actually use.",
+    note: "Containerized delivery, orchestration, and observability that support day-two operations.",
     items: [
       { name: "Docker", slug: "docker" },
       { name: "Kubernetes", slug: "kubernetes" },
@@ -128,22 +132,22 @@ export const patterns: Pattern[] = [
   {
     name: "Modular monolith",
     detail:
-      "Bounded contexts in one deployable, with seams wide enough to split when the load asks for it.",
+      "Start with well-defined domain boundaries in one deployable, then keep the seams ready for future extraction when scale or team structure demands it.",
   },
   {
     name: "Event-driven",
     detail:
-      "Kafka and a transactional outbox, with Debezium CDC so the database and the bus never disagree.",
+      "Use events to decouple workflows, with a transactional outbox and CDC to keep the database and message bus in sync.",
   },
   {
     name: "Clean architecture",
     detail:
-      "Domain at the center, use cases around it, ports and adapters outward. Frameworks stay on the edge.",
+      "Keep business rules at the center, push frameworks to the edges, and make the codebase easier to test, change, and reason about.",
   },
   {
     name: "Observability first",
     detail:
-      "Prometheus, Grafana, Loki, and Tempo wired in from the first commit, not bolted on before launch.",
+      "Add logs, metrics, and traces early so performance issues and failures are visible before they become expensive to untangle.",
   },
 ];
 
@@ -152,7 +156,7 @@ export const projects: Project[] = [
     name: "send-flow-backend",
     kind: "Go · Kafka · PostgreSQL · ClickHouse",
     description:
-      "A modular monolith email delivery platform in Go. Clean architecture, event-driven with a Kafka and Debezium outbox, ClickHouse analytics, and an API plus worker split.",
+      "An email delivery platform built in Go with a modular monolith architecture, Kafka-driven workflows, a transactional outbox with Debezium CDC, and ClickHouse for delivery analytics.",
     href: "https://github.com/ninggiangboy/send-flow-backend",
     accent: "Go",
   },
@@ -160,7 +164,7 @@ export const projects: Project[] = [
     name: "send-flow-frontend",
     kind: "TypeScript · React · Vite",
     description:
-      "The dashboard for send-flow. React, TanStack Router, and Vite, organized feature-first to mirror the backend's bounded contexts.",
+      "The operational dashboard for send-flow, built with React, TanStack Router, and Vite in a feature-first structure that mirrors backend domain boundaries.",
     href: "https://github.com/ninggiangboy/send-flow-frontend",
     accent: "TypeScript",
   },
@@ -170,19 +174,78 @@ export const nowEntries: NowEntry[] = [
   {
     label: "Role",
     detail:
-      "Started a new full-stack role. Settling in, shipping the first tickets.",
+      "Working as a Full-Stack Developer, shipping product features across backend services and frontend surfaces.",
   },
   {
     label: "Learning",
     detail:
-      "Going deeper on domain-driven design, event-driven design, and running distributed systems in production.",
+      "Going deeper on domain-driven design, event-driven systems, and the operational tradeoffs that come with running distributed software in production.",
   },
   {
     label: "Building",
     detail:
-      "send-flow, an email delivery platform. Kafka outbox, ClickHouse analytics, an API and a worker.",
+      "Building send-flow, an email delivery platform with Kafka-based workflows, ClickHouse analytics, and a clear split between API and worker responsibilities.",
   },
 ];
+
+export const heroCopy = {
+  intro:
+    "I build backend systems that scale with clarity and the product interfaces that make them useful. My work centers on event-driven architecture, strong boundaries, and software teams can keep moving inside.",
+  primaryCta: "Email me",
+  secondaryCta: "View work",
+};
+
+export const aboutCopy = {
+  title: "About",
+  paragraphs: [
+    "I am a full-stack developer based in Hanoi, building backend platforms in Go and Spring and the frontend experiences that sit on top of them.",
+    "I care about systems that remain understandable as they grow: clear contracts, dependable delivery pipelines, useful observability, and code that still reads cleanly after several iterations.",
+  ],
+};
+
+export const sectionCopy: Record<
+  "work" | "approach" | "stack" | "experience" | "now",
+  SectionIntro
+> = {
+  work: {
+    title: "Selected work",
+    description:
+      "A focused look at the projects that best reflect how I design systems, structure code, and ship product-facing software.",
+  },
+  approach: {
+    title: "Approach",
+    description:
+      "The engineering patterns I rely on most often when a project needs to stay maintainable, observable, and ready to grow.",
+  },
+  stack: {
+    title: "Toolbox",
+    description:
+      "The technologies I reach for across backend, data, frontend, and platform work.",
+  },
+  experience: {
+    title: "Experience",
+    description:
+      "The teams I have worked with and the foundation that shaped how I build software today.",
+  },
+  now: {
+    title: "Now",
+    description:
+      "What I am focused on at the moment, from day-to-day work to the systems ideas I am actively sharpening.",
+  },
+};
+
+export const footerCopy = {
+  eyebrow: "Get in touch",
+  cta: "Email me",
+  description:
+    "I am open to conversations about backend platforms, full-stack product work, and teams building reliable software.",
+};
+
+export const metadataCopy = {
+  title: "Ha Duy Khanh | Full-Stack Developer",
+  description:
+    "Full-stack developer in Hanoi building reliable backend platforms and product interfaces with event-driven architecture and maintainable systems design.",
+};
 
 export type ExperienceEntry = {
   org: string;
@@ -200,7 +263,7 @@ export type EducationEntry = {
 export const experience: ExperienceEntry[] = [
   {
     org: "Rabiloo",
-    role: "Full Stack Developer",
+    role: "Full-Stack Developer",
     period: "June 2024 - Present",
     location: "Hanoi, Vietnam",
   },
@@ -215,7 +278,7 @@ export const experience: ExperienceEntry[] = [
 export const education: EducationEntry[] = [
   {
     school: "FPT University",
-    degree: "Bachelor's degree, Computer Software Engineering",
+    degree: "Bachelor's degree in Software Engineering",
     period: "2021 - 2025",
   },
 ];

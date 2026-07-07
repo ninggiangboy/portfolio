@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { stack } from "@/lib/data";
+import { sectionCopy, stack } from "@/lib/data";
 import { Reveal } from "./reveal";
 
 export function Stack() {
@@ -8,11 +8,10 @@ export function Stack() {
       <div className="mx-auto max-w-[1400px] px-6 py-24 md:px-10 md:py-32">
         <Reveal>
           <h2 className="text-4xl font-medium tracking-tighter md:text-5xl">
-            Toolbox
+            {sectionCopy.stack.title}
           </h2>
           <p className="mt-4 max-w-[55ch] leading-relaxed text-muted">
-            The tools I reach for across the whole stack, from Postgres and
-            Kafka to the React UI.
+            {sectionCopy.stack.description}
           </p>
         </Reveal>
 

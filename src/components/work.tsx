@@ -1,7 +1,7 @@
 "use client";
 
 import { ArrowUpRight } from "@phosphor-icons/react";
-import { projects } from "@/lib/data";
+import { projects, sectionCopy } from "@/lib/data";
 import { Reveal } from "./reveal";
 
 export function Work() {
@@ -10,11 +10,10 @@ export function Work() {
       <div className="mx-auto max-w-[1400px] px-6 py-24 md:px-10 md:py-32">
         <Reveal>
           <h2 className="text-4xl font-medium tracking-tighter md:text-5xl">
-            Selected work
+            {sectionCopy.work.title}
           </h2>
           <p className="mt-4 max-w-[55ch] leading-relaxed text-muted">
-            A few things I have built or am building. Most of it lives on
-            GitHub.
+            {sectionCopy.work.description}
           </p>
         </Reveal>
 

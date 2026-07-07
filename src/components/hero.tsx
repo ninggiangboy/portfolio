@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { profile } from "@/lib/data";
+import { heroCopy, profile } from "@/lib/data";
 import { CtaLink } from "./cta";
 import { Reveal } from "./reveal";
 
@@ -21,19 +21,21 @@ export function Hero() {
             </Reveal>
             <Reveal delay={0.12}>
               <p className="max-w-[52ch] text-lg leading-relaxed text-muted">
-                Full-stack developer building distributed backends. Modular
-                monoliths, transactional outbox, and the boundaries between
-                modules.
+                {heroCopy.intro}
               </p>
             </Reveal>
             <Reveal delay={0.18}>
               <div className="mt-2 flex flex-wrap items-center gap-3">
                 <CtaLink
                   href={`mailto:${profile.email}`}
-                  label="Email me"
+                  label={heroCopy.primaryCta}
                   variant="primary"
                 />
-                <CtaLink href="#work" label="View work" variant="ghost" />
+                <CtaLink
+                  href="#work"
+                  label={heroCopy.secondaryCta}
+                  variant="ghost"
+                />
               </div>
             </Reveal>
           </div>

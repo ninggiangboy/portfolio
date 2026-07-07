@@ -1,4 +1,4 @@
-import { education, experience } from "@/lib/data";
+import { education, experience, sectionCopy } from "@/lib/data";
 import { Reveal } from "./reveal";
 
 export function Experience() {
@@ -7,10 +7,10 @@ export function Experience() {
       <div className="mx-auto max-w-[1400px] px-6 py-24 md:px-10 md:py-32">
         <Reveal>
           <h2 className="text-4xl font-medium tracking-tighter md:text-5xl">
-            Experience
+            {sectionCopy.experience.title}
           </h2>
           <p className="mt-4 max-w-[55ch] leading-relaxed text-muted">
-            Where I have worked and studied.
+            {sectionCopy.experience.description}
           </p>
         </Reveal>
 
