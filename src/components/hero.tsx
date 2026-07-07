@@ -35,12 +35,12 @@ export function Hero() {
                   >
                     <span
                       aria-hidden
-                      className={`mt-2 font-mono text-xs tabular-nums md:mt-4 md:text-sm ${line.outline ? "text-accent" : "text-muted-2"}`}
+                      className={`mt-3 font-mono text-xs tabular-nums md:mt-4 md:text-sm ${line.outline ? "text-accent" : "text-muted-2"}`}
                     >
                       {line.index}
                     </span>
                     <span
-                      className={`block text-[clamp(2.75rem,10.5vw,8rem)] font-medium tracking-tighter leading-[0.85] transition-colors duration-300 group-hover:text-accent ${line.outline ? "text-transparent [-webkit-text-stroke:1.5px_var(--color-foreground)]" : ""}`}
+                      className={`block text-[clamp(3.75rem,13vw,8rem)] font-medium tracking-tighter leading-[0.85] transition-colors duration-300 group-hover:text-accent ${line.outline ? "text-transparent [-webkit-text-stroke:1.5px_var(--color-foreground)]" : ""}`}
                     >
                       {line.word}
                       {i === nameLines.length - 1 && (
