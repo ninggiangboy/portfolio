@@ -164,11 +164,28 @@ async function readPostFile(
   };
 }
 
+async function readLocaleEntries(directory: string) {
+  try {
+    return await fs.readdir(directory);
+  } catch (error) {
+    if (
+      error &&
+      typeof error === "object" &&
+      "code" in error &&
+      error.code === "ENOENT"
+    ) {
+      return [];
+    }
+
+    throw error;
+  }
+}
+
 export const getPostsByLocale = cache(
   async (locale: string): Promise<BlogPost[]> => {
     const safeLocale = ensureLocale(locale);
     const directory = path.join(blogRoot, safeLocale);
-    const entries = await fs.readdir(directory);
+    const entries = await readLocaleEntries(directory);
     const posts = await Promise.all(
       entries
         .filter((entry) => entry.endsWith(".md"))
