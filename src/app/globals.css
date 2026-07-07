@@ -151,6 +151,9 @@
     animation: none;
     opacity: 1;
   }
+  .animate-ping {
+    animation: none;
+  }
 }
 
 .markdown-content {
