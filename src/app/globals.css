@@ -1,6 +1,19 @@
 @import "tailwindcss";
 
 :root {
+  --background: #fafafa;
+  --foreground: #18181b;
+  --muted: #52525b;
+  --muted-2: #71717a;
+  --line: #e4e4e7;
+  --surface: #f4f4f5;
+  --accent: #4d7c0f;
+  --accent-strong: #3f6212;
+  --selection: rgba(77, 124, 15, 0.16);
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
   --background: #0a0a0b;
   --foreground: #ededed;
   --muted: #a1a1aa;
@@ -13,21 +26,27 @@
   color-scheme: dark;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    --background: #fafafa;
-    --foreground: #18181b;
-    --muted: #52525b;
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --background: #0a0a0b;
+    --foreground: #ededed;
+    --muted: #a1a1aa;
     --muted-2: #71717a;
-    --line: #e4e4e7;
-    --surface: #f4f4f5;
-    --accent: #4d7c0f;
-    --accent-strong: #3f6212;
-    --selection: rgba(77, 124, 15, 0.16);
-    color-scheme: light;
+    --line: #27272a;
+    --surface: #131316;
+    --accent: #bef264;
+    --accent-strong: #a3e635;
+    --selection: rgba(190, 242, 100, 0.18);
+    color-scheme: dark;
   }
+}
 
-  .tech-logo {
+:root[data-theme="light"] .tech-logo {
+  filter: brightness(0.5);
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) .tech-logo {
     filter: brightness(0.5);
   }
 }
@@ -55,11 +74,49 @@
   }
 
   body {
-    background: var(--color-background);
+    background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans), system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image:
+      radial-gradient(
+        ellipse 70% 50% at 50% 0%,
+        color-mix(in srgb, var(--color-accent) 6%, transparent),
+        transparent 70%
+      ),
+      linear-gradient(
+        to right,
+        color-mix(in srgb, var(--color-line) 50%, transparent) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        to bottom,
+        color-mix(in srgb, var(--color-line) 50%, transparent) 1px,
+        transparent 1px
+      );
+    background-size:
+      100% 100%,
+      64px 64px,
+      64px 64px;
+    -webkit-mask-image: radial-gradient(
+      ellipse 100% 75% at 50% 0%,
+      black,
+      transparent 75%
+    );
+    mask-image: radial-gradient(
+      ellipse 100% 75% at 50% 0%,
+      black,
+      transparent 75%
+    );
   }
 
   ::selection {
