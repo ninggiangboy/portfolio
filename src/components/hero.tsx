@@ -1,9 +1,11 @@
 import Image from "next/image";
-import { heroCopy, profile } from "@/lib/data";
+import { useIntlayer } from "next-intlayer/server";
+import { profile } from "@/lib/data";
 import { CtaLink } from "./cta";
 import { Reveal } from "./reveal";
 
 export function Hero() {
+  const { hero, profile: profileCopy } = useIntlayer("site");
   const words = profile.name.split(" ");
   const middleIndex = Math.floor((words.length - 1) / 2);
   const nameLines = words.map((word, i) => ({
@@ -24,7 +26,7 @@ export function Hero() {
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent/60" />
                   <span className="relative inline-flex h-full w-full rounded-full bg-accent" />
                 </span>
-                {profile.handle} / {profile.role}
+                {profile.handle} / {profileCopy.role}
               </p>
             </Reveal>
             <h1 className="flex flex-col" aria-label={profile.name}>
@@ -56,19 +58,19 @@ export function Hero() {
             </h1>
             <Reveal delay={0.12}>
               <p className="max-w-[52ch] text-lg leading-relaxed text-muted">
-                {heroCopy.intro}
+                {hero.intro}
               </p>
             </Reveal>
             <Reveal delay={0.18}>
               <div className="mt-2 flex flex-wrap items-center gap-3">
                 <CtaLink
                   href={`mailto:${profile.email}`}
-                  label={heroCopy.primaryCta}
+                  label={hero.primaryCta}
                   variant="primary"
                 />
                 <CtaLink
                   href="#work"
-                  label={heroCopy.secondaryCta}
+                  label={hero.secondaryCta}
                   variant="ghost"
                 />
               </div>
@@ -84,7 +86,7 @@ export function Hero() {
                 />
                 <Image
                   src={profile.avatar}
-                  alt={`Portrait of ${profile.name}`}
+                  alt={String(profileCopy.portraitAlt)}
                   fill
                   priority
                   sizes="(max-width: 768px) 100vw, 320px"

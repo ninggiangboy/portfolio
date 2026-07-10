@@ -3,18 +3,21 @@
 import { ArrowUp } from "@phosphor-icons/react";
 import { AnimatePresence, motion } from "motion/react";
 import { usePathname } from "next/navigation";
+import { useIntlayer } from "next-intlayer";
 import { useEffect, useEffectEvent, useState } from "react";
-import { blogUiCopy } from "@/lib/data";
 
 function shouldShowScrollTop(pathname: string | null) {
   if (!pathname) {
     return false;
   }
 
-  return pathname === "/" || /^\/(en|vi)\/blog\/[^/]+$/.test(pathname);
+  return (
+    /^\/(en|vi)\/?$/.test(pathname) || /^\/(en|vi)\/blog\/[^/]+$/.test(pathname)
+  );
 }
 
 export function PageScrollTop() {
+  const { ui } = useIntlayer("blog");
   const pathname = usePathname();
   const [showScrollTop, setShowScrollTop] = useState(false);
   const isVisible = shouldShowScrollTop(pathname);
@@ -47,7 +50,7 @@ export function PageScrollTop() {
         <motion.button
           key="page-scroll-top"
           type="button"
-          aria-label={blogUiCopy.scrollToTopLabel}
+          aria-label={String(ui.scrollToTopLabel)}
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           initial={{ opacity: 0, y: 18, scale: 0.9 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}

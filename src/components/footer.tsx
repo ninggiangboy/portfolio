@@ -1,4 +1,5 @@
-import { footerCopy, profile } from "@/lib/data";
+import { useIntlayer } from "next-intlayer/server";
+import { profile } from "@/lib/data";
 import { BigCta } from "./big-cta";
 import { Reveal } from "./reveal";
 import { SocialLinks } from "./social-links";
@@ -8,6 +9,8 @@ type FooterProps = {
 };
 
 export function Footer({ socialOnly = false }: FooterProps) {
+  const { footer, profile: profileCopy } = useIntlayer("site");
+
   return (
     <footer id="contact" className="scroll-mt-20 border-t border-line">
       <div
@@ -17,12 +20,12 @@ export function Footer({ socialOnly = false }: FooterProps) {
       >
         {socialOnly ? null : (
           <Reveal>
-            <p className="font-mono text-sm text-muted">{footerCopy.eyebrow}</p>
+            <p className="font-mono text-sm text-muted">{footer.eyebrow}</p>
             <div className="mt-6">
-              <BigCta href={`mailto:${profile.email}`} label={footerCopy.cta} />
+              <BigCta href={`mailto:${profile.email}`} label={footer.cta} />
             </div>
             <p className="mt-6 max-w-md leading-relaxed text-muted">
-              {footerCopy.description}
+              {footer.description}
             </p>
           </Reveal>
         )}
@@ -35,7 +38,7 @@ export function Footer({ socialOnly = false }: FooterProps) {
       <div className="border-t border-line">
         <div className="mx-auto flex max-w-[1400px] flex-col justify-between gap-2 px-6 py-6 font-mono text-xs text-muted-2 sm:flex-row md:px-10">
           <span>&copy; 2026 {profile.name}</span>
-          <span>{profile.based}</span>
+          <span>{profileCopy.based}</span>
         </div>
       </div>
     </footer>

@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import { useIntlayer } from "next-intlayer";
 import { useEffect, useState } from "react";
 import type { BlogHeading } from "@/lib/blog";
-import { blogUiCopy } from "@/lib/data";
 
 type BlogReadingLayoutProps = {
   children: React.ReactNode;
@@ -14,6 +14,7 @@ export function BlogReadingLayout({
   children,
   headings,
 }: BlogReadingLayoutProps) {
+  const { ui } = useIntlayer("blog");
   const tocHeadings = headings.filter((heading) => heading.level > 1);
   const [activeId, setActiveId] = useState<string | null>(
     tocHeadings[0]?.id ?? null,
@@ -70,7 +71,7 @@ export function BlogReadingLayout({
           <aside className="hidden lg:block">
             <div className="sticky top-28 space-y-5">
               <p className="font-mono text-xs uppercase tracking-[0.22em] text-muted-2">
-                {blogUiCopy.tocTitle}
+                {ui.tocTitle}
               </p>
 
               <nav>

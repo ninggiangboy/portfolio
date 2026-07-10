@@ -1,8 +1,15 @@
-import { blogIntro } from "@/lib/data";
+import { useIntlayer } from "next-intlayer/server";
+import type { SiteLocale } from "@/lib/i18n";
 import { CtaLink } from "./cta";
 import { Reveal } from "./reveal";
 
-export function BlogTeaser() {
+type BlogTeaserProps = {
+  locale: SiteLocale;
+};
+
+export function BlogTeaser({ locale }: BlogTeaserProps) {
+  const { intro } = useIntlayer("blog");
+
   return (
     <section id="blog" className="scroll-mt-20 border-t border-line">
       <div className="mx-auto max-w-[1400px] px-6 py-24 md:px-10 md:py-32">
@@ -10,20 +17,20 @@ export function BlogTeaser() {
           <div className="grid grid-cols-1 gap-10 md:grid-cols-12 md:gap-6">
             <div className="md:col-span-4">
               <h2 className="text-4xl font-medium tracking-tighter md:text-5xl">
-                {blogIntro.eyebrow}
+                {intro.eyebrow}
               </h2>
               <p className="mt-4 max-w-[55ch] leading-relaxed text-muted">
-                {blogIntro.title}
+                {intro.title}
               </p>
             </div>
 
             <div className="md:col-span-8">
               <div className="max-w-[65ch] space-y-6">
                 <p className="leading-relaxed text-muted">
-                  {blogIntro.description}
+                  {intro.description}
                 </p>
                 <div>
-                  <CtaLink href="/en/blog" label="Visit blog" />
+                  <CtaLink href={`/${locale}/blog`} label={intro.visitBlog} />
                 </div>
               </div>
             </div>

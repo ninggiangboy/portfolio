@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { IntlayerServerProvider, useIntlayer } from "next-intlayer/server";
 import ReactMarkdown from "react-markdown";
 import rehypeSanitize from "rehype-sanitize";
 import remarkGfm from "remark-gfm";
@@ -14,7 +15,7 @@ import {
   getAlternatePostLocale,
   getPostOrNotFound,
 } from "@/lib/blog";
-import { blogUiCopy } from "@/lib/data";
+import { localeOpenGraph } from "@/lib/i18n";
 
 type BlogPostPageProps = {
   params: Promise<{ locale: string; slug: string }>;
@@ -28,7 +29,7 @@ export async function generateMetadata({
   params,
 }: BlogPostPageProps): Promise<Metadata> {
   const { locale, slug } = await params;
-  const safeLocale = assertBlogLocale(locale);
+  const safeLocale = assertBlogLocale(locale ?? "");
   const post = await getPostOrNotFound(safeLocale, slug);
   const alternateLocale = await getAlternatePostLocale(safeLocale, slug);
 
@@ -47,16 +48,20 @@ export async function generateMetadata({
       title: post.title,
       description: post.description,
       type: "article",
-      locale: safeLocale === "vi" ? "vi_VN" : "en_US",
+      locale: localeOpenGraph[safeLocale],
       publishedTime: new Date(post.date).toISOString(),
     },
   };
 }
 
-export default async function BlogPostPage({ params }: BlogPostPageProps) {
-  const { locale, slug } = await params;
-  const safeLocale = assertBlogLocale(locale);
-  const post = await getPostOrNotFound(safeLocale, slug);
+function BlogPostContent({
+  locale,
+  post,
+}: {
+  locale: ReturnType<typeof assertBlogLocale>;
+  post: Awaited<ReturnType<typeof getPostOrNotFound>>;
+}) {
+  const { ui } = useIntlayer("blog");
   const headingQueue = [...post.headings];
   let headingIndex = 0;
 
@@ -76,15 +81,15 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       <section className="border-b border-line">
         <div className="mx-auto flex w-full max-w-[1180px] flex-col gap-6 px-6 py-16 md:px-10 md:py-20">
           <Link
-            href={`/${safeLocale}/blog`}
+            href={`/${locale}/blog`}
             className="font-mono text-sm text-muted transition-colors hover:text-accent"
           >
-            {blogUiCopy.backToBlog}
+            {ui.backToBlog}
           </Link>
 
           <div className="flex flex-wrap items-center gap-3 text-xs text-muted-2">
             <span>
-              {blogUiCopy.publishedOn}: {formatBlogDate(safeLocale, post.date)}
+              {ui.publishedOn}: {formatBlogDate(locale, post.date)}
             </span>
           </div>
 
@@ -109,7 +114,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </div>
 
           <div>
-            <BlogLocaleSwitcher currentLocale={safeLocale} slug={post.slug} />
+            <BlogLocaleSwitcher currentLocale={locale} slug={post.slug} />
           </div>
         </div>
       </section>
@@ -151,5 +156,17 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
       <Footer socialOnly />
     </main>
+  );
+}
+
+export default async function BlogPostPage({ params }: BlogPostPageProps) {
+  const { locale, slug } = await params;
+  const safeLocale = assertBlogLocale(locale ?? "");
+  const post = await getPostOrNotFound(safeLocale, slug);
+
+  return (
+    <IntlayerServerProvider locale={safeLocale}>
+      <BlogPostContent locale={safeLocale} post={post} />
+    </IntlayerServerProvider>
   );
 }

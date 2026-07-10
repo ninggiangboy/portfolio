@@ -8,7 +8,9 @@ function shouldShowProgress(pathname: string | null) {
     return false;
   }
 
-  return pathname === "/" || /^\/(en|vi)\/blog\/[^/]+$/.test(pathname);
+  return (
+    /^\/(en|vi)\/?$/.test(pathname) || /^\/(en|vi)\/blog\/[^/]+$/.test(pathname)
+  );
 }
 
 export function PageScrollProgress() {

@@ -2,23 +2,26 @@
 
 import { List, X } from "@phosphor-icons/react";
 import Link from "next/link";
+import { useIntlayer, useLocale } from "next-intlayer";
 import { useEffect, useState } from "react";
-import { heroCopy, profile } from "@/lib/data";
+import { profile } from "@/lib/data";
 import { CtaLink } from "./cta";
 import { PageScrollProgress } from "./page-scroll-progress";
 import { PageScrollTop } from "./page-scroll-top";
 
-const links = [
-  { label: "About", href: "/#about" },
-  { label: "Stack", href: "/#stack" },
-  { label: "Work", href: "/#work" },
-  { label: "Experience", href: "/#experience" },
-  { label: "Now", href: "/#now" },
-  { label: "Blog", href: "/en/blog" },
-];
-
 export function Nav() {
+  const { hero, nav } = useIntlayer("site");
+  const { locale } = useLocale();
   const [open, setOpen] = useState(false);
+  const basePath = `/${locale}`;
+  const links = [
+    { label: nav.about, href: `${basePath}#about` },
+    { label: nav.stack, href: `${basePath}#stack` },
+    { label: nav.work, href: `${basePath}#work` },
+    { label: nav.experience, href: `${basePath}#experience` },
+    { label: nav.now, href: `${basePath}#now` },
+    { label: nav.blog, href: `${basePath}/blog` },
+  ];
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -34,7 +37,7 @@ export function Nav() {
 
         <nav className="mx-auto flex h-16 max-w-[1400px] items-center justify-between px-6 md:px-10">
           <Link
-            href="/"
+            href={basePath}
             className="group flex items-center gap-1.5 font-mono text-sm font-medium tracking-tight"
           >
             <span className="text-foreground transition-colors group-hover:text-accent">
@@ -58,7 +61,7 @@ export function Nav() {
             ))}
             <CtaLink
               href={`mailto:${profile.email}`}
-              label={heroCopy.primaryCta}
+              label={hero.primaryCta}
               variant="ghost"
             />
           </div>
@@ -66,7 +69,7 @@ export function Nav() {
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
-            aria-label={open ? "Close menu" : "Open menu"}
+            aria-label={String(open ? nav.closeMenu : nav.openMenu)}
             aria-expanded={open}
             className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-line text-foreground md:hidden"
           >
@@ -94,7 +97,7 @@ export function Nav() {
               <div className="mt-4">
                 <CtaLink
                   href={`mailto:${profile.email}`}
-                  label={heroCopy.primaryCta}
+                  label={hero.primaryCta}
                   variant="primary"
                 />
               </div>

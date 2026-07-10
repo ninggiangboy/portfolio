@@ -1,6 +1,6 @@
 import Link from "next/link";
+import { useIntlayer } from "next-intlayer/server";
 import type { BlogLocale } from "@/lib/blog";
-import { blogSwitcherLabel } from "@/lib/data";
 
 type BlogLocaleSwitcherProps = {
   currentLocale: BlogLocale;
@@ -11,16 +11,19 @@ export function BlogLocaleSwitcher({
   currentLocale,
   slug,
 }: BlogLocaleSwitcherProps) {
+  const { ui } = useIntlayer("blog");
   const nextLocale = currentLocale === "en" ? "vi" : "en";
   const href = slug ? `/${nextLocale}/blog/${slug}` : `/${nextLocale}/blog`;
+  const label =
+    nextLocale === "en" ? ui.switchToEnglish : ui.switchToVietnamese;
 
   return (
     <Link
       href={href}
-      aria-label={blogSwitcherLabel[nextLocale]}
+      aria-label={String(label)}
       className="font-mono text-sm text-muted transition-colors hover:text-accent"
     >
-      {blogSwitcherLabel[nextLocale]}
+      {label}
     </Link>
   );
 }

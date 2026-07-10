@@ -3,10 +3,16 @@ import path from "node:path";
 import matter from "gray-matter";
 import { notFound } from "next/navigation";
 import { cache } from "react";
+import {
+  assertSiteLocale,
+  localeFormats,
+  type SiteLocale,
+  siteLocales,
+} from "@/lib/i18n";
 
-export const blogLocales = ["en", "vi"] as const;
+export const blogLocales = siteLocales;
 
-export type BlogLocale = (typeof blogLocales)[number];
+export type BlogLocale = SiteLocale;
 
 export type BlogPostMeta = {
   title: string;
@@ -35,11 +41,7 @@ function isBlogLocale(value: string): value is BlogLocale {
 }
 
 function ensureLocale(locale: string): BlogLocale {
-  if (!isBlogLocale(locale)) {
-    notFound();
-  }
-
-  return locale;
+  return assertSiteLocale(locale);
 }
 
 function validateMeta(data: unknown, filePath: string): BlogPostMeta {
@@ -244,7 +246,7 @@ export async function getAllBlogParams() {
 }
 
 export function formatBlogDate(_locale: BlogLocale, date: string) {
-  return new Intl.DateTimeFormat("en-US", {
+  return new Intl.DateTimeFormat(localeFormats[_locale], {
     dateStyle: "long",
   }).format(new Date(date));
 }
