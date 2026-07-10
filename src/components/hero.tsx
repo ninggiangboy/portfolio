@@ -64,7 +64,7 @@ export function Hero() {
             <Reveal delay={0.18}>
               <div className="mt-2 flex flex-wrap items-center gap-3">
                 <CtaLink
-                  href={`mailto:${profile.email}`}
+                  href="#contact"
                   label={hero.primaryCta}
                   variant="primary"
                 />

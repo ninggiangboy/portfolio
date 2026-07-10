@@ -1,6 +1,6 @@
 import { useIntlayer } from "next-intlayer/server";
 import { profile } from "@/lib/data";
-import { BigCta } from "./big-cta";
+import { ContactForm } from "./contact-form";
 import { Reveal } from "./reveal";
 import { SocialLinks } from "./social-links";
 
@@ -21,12 +21,26 @@ export function Footer({ socialOnly = false }: FooterProps) {
         {socialOnly ? null : (
           <Reveal>
             <p className="font-mono text-sm text-muted">{footer.eyebrow}</p>
-            <div className="mt-6">
-              <BigCta href={`mailto:${profile.email}`} label={footer.cta} />
-            </div>
-            <p className="mt-6 max-w-md leading-relaxed text-muted">
-              {footer.description}
-            </p>
+            <ContactForm
+              title={String(footer.cta)}
+              copy={{
+                description: String(footer.description),
+                nameLabel: String(footer.form.nameLabel),
+                namePlaceholder: String(footer.form.namePlaceholder),
+                nameValidation: String(footer.form.nameValidation),
+                emailLabel: String(footer.form.emailLabel),
+                emailPlaceholder: String(footer.form.emailPlaceholder),
+                emailValidation: String(footer.form.emailValidation),
+                messageLabel: String(footer.form.messageLabel),
+                messagePlaceholder: String(footer.form.messagePlaceholder),
+                messageValidation: String(footer.form.messageValidation),
+                submit: String(footer.form.submit),
+                pending: String(footer.form.pending),
+                success: String(footer.form.success),
+                formError: String(footer.form.formError),
+                turnstileError: String(footer.form.turnstileError),
+              }}
+            />
           </Reveal>
         )}
 

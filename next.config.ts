@@ -1,6 +1,12 @@
 import type { NextConfig } from "next";
 import { withIntlayer } from "next-intlayer/server";
 
+if (process.env.NODE_ENV === "development") {
+  void import("@opennextjs/cloudflare").then((mod) =>
+    mod.initOpenNextCloudflareForDev(),
+  );
+}
+
 const nextConfig: NextConfig = {
   reactCompiler: true,
   images: {

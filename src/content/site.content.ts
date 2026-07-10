@@ -292,11 +292,54 @@ const siteContent = {
     ],
     footer: {
       eyebrow: t({ en: "Get in touch", vi: "Get in touch" }),
-      cta: t({ en: "Email me", vi: "Email me" }),
+      cta: t({ en: "Start a conversation", vi: "Start a conversation" }),
       description: t({
         en: "I am open to conversations about backend platforms, full-stack product work, and teams building reliable software.",
         vi: "I am open to conversations about backend platforms, full-stack product work, and teams building reliable software.",
       }),
+      form: {
+        nameLabel: t({ en: "Name", vi: "Name" }),
+        namePlaceholder: t({
+          en: "How should I address you?",
+          vi: "How should I address you?",
+        }),
+        nameValidation: t({
+          en: "Enter a name with at least 2 characters.",
+          vi: "Enter a name with at least 2 characters.",
+        }),
+        emailLabel: t({ en: "Email", vi: "Email" }),
+        emailPlaceholder: t({
+          en: "Where should I reply?",
+          vi: "Where should I reply?",
+        }),
+        emailValidation: t({
+          en: "Enter a valid email address.",
+          vi: "Enter a valid email address.",
+        }),
+        messageLabel: t({ en: "Message", vi: "Message" }),
+        messagePlaceholder: t({
+          en: "Share the project, role, or question you have in mind.",
+          vi: "Share the project, role, or question you have in mind.",
+        }),
+        messageValidation: t({
+          en: "Add a bit more context so I can respond usefully.",
+          vi: "Add a bit more context so I can respond usefully.",
+        }),
+        submit: t({ en: "Send message", vi: "Send message" }),
+        pending: t({ en: "Sending...", vi: "Sending..." }),
+        success: t({
+          en: "Message sent. I will reply as soon as I can.",
+          vi: "Message sent. I will reply as soon as I can.",
+        }),
+        formError: t({
+          en: "The message could not be sent. Please try again in a moment.",
+          vi: "The message could not be sent. Please try again in a moment.",
+        }),
+        turnstileError: t({
+          en: "Complete the spam check before sending your message.",
+          vi: "Complete the spam check before sending your message.",
+        }),
+      },
     },
   },
 } satisfies Dictionary;

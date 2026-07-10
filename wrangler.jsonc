@@ -5,6 +5,9 @@
   // Set this to today's date
   "compatibility_date": "2026-07-06",
   "compatibility_flags": ["nodejs_compat"],
+  "secrets": {
+    "required": ["CONTACT_FROM_EMAIL", "RESEND_API_KEY", "TURNSTILE_SECRET_KEY"]
+  },
   "routes": [
     {
       "pattern": "portfolio.nigb.dev",
