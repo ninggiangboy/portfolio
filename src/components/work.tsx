@@ -2,7 +2,7 @@
 
 import { ArrowUpRight } from "@phosphor-icons/react";
 import { projects, sectionCopy } from "@/lib/data";
-import { sendflowDiagram } from "@/lib/diagrams";
+import { sendflowDiagram, sendflowDiagramMobile } from "@/lib/diagrams";
 import { Reveal } from "./reveal";
 import { SystemDiagram } from "./system-diagram";
 
@@ -70,13 +70,25 @@ export function Work() {
                       />
                       System architecture
                     </p>
-                    <SystemDiagram
-                      nodes={sendflowDiagram.nodes}
-                      edges={sendflowDiagram.edges}
-                      viewBox={sendflowDiagram.viewBox}
-                      ariaLabel={`${project.name} system architecture diagram`}
-                      className="mt-6 h-auto w-full"
-                    />
+                    <div className="mt-6 md:hidden">
+                      <SystemDiagram
+                        nodes={sendflowDiagramMobile.nodes}
+                        edges={sendflowDiagramMobile.edges}
+                        viewBox={sendflowDiagramMobile.viewBox}
+                        ariaLabel={`${project.name} system architecture diagram`}
+                        nodeScale={1.18}
+                        className="h-auto w-full"
+                      />
+                    </div>
+                    <div className="mt-6 hidden md:block">
+                      <SystemDiagram
+                        nodes={sendflowDiagram.nodes}
+                        edges={sendflowDiagram.edges}
+                        viewBox={sendflowDiagram.viewBox}
+                        ariaLabel={`${project.name} system architecture diagram`}
+                        className="h-auto w-full"
+                      />
+                    </div>
                   </div>
                 </div>
               ) : null}
