@@ -28,6 +28,7 @@ export type Project = {
   href?: string;
   status?: "in-progress";
   accent: string;
+  diagram?: boolean;
 };
 
 export type NowEntry = {
@@ -174,6 +175,7 @@ export const projects: Project[] = [
       "An email delivery platform built in Go with a modular monolith architecture, Kafka-driven workflows, a transactional outbox with Debezium CDC, and ClickHouse for delivery analytics.",
     href: "https://github.com/ninggiangboy/send-flow-backend",
     accent: "Go",
+    diagram: true,
   },
   {
     name: "send-flow-frontend",

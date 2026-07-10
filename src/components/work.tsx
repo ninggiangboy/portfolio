@@ -2,7 +2,9 @@
 
 import { ArrowUpRight } from "@phosphor-icons/react";
 import { projects, sectionCopy } from "@/lib/data";
+import { sendflowDiagram } from "@/lib/diagrams";
 import { Reveal } from "./reveal";
+import { SystemDiagram } from "./system-diagram";
 
 export function Work() {
   return (
@@ -58,6 +60,26 @@ export function Work() {
                   </span>
                 )}
               </div>
+              {project.diagram ? (
+                <div className="md:col-span-12">
+                  <div className="overflow-hidden rounded-2xl border border-line bg-surface p-6 md:p-8">
+                    <p className="flex items-center gap-2 font-mono text-xs text-muted-2">
+                      <span
+                        aria-hidden
+                        className="h-1.5 w-1.5 rounded-full bg-accent"
+                      />
+                      System architecture
+                    </p>
+                    <SystemDiagram
+                      nodes={sendflowDiagram.nodes}
+                      edges={sendflowDiagram.edges}
+                      viewBox={sendflowDiagram.viewBox}
+                      ariaLabel={`${project.name} system architecture diagram`}
+                      className="mt-6 h-auto w-full"
+                    />
+                  </div>
+                </div>
+              ) : null}
             </Reveal>
           ))}
         </ul>
