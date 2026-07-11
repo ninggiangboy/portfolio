@@ -2,6 +2,7 @@
 
 import Script from "next/script";
 import { useEffect, useRef, useState } from "react";
+import { contactFormSchema } from "@/lib/contact/schema";
 
 type ContactFormCopy = {
   description: string;
@@ -117,6 +118,31 @@ export function ContactForm({ copy, title }: ContactFormProps) {
 
     const formData = new FormData(event.currentTarget);
     formData.set("cf-turnstile-response", token);
+
+    const parsed = contactFormSchema.safeParse({
+      name: formData.get("name"),
+      email: formData.get("email"),
+      message: formData.get("message"),
+      website: formData.get("website"),
+      turnstileToken: token,
+    });
+
+    if (!parsed.success) {
+      const errors: Partial<Record<"email" | "message" | "name", string>> = {};
+      for (const issue of parsed.error.issues) {
+        const [path] = issue.path;
+        if (
+          (path === "name" || path === "email" || path === "message") &&
+          !errors[path]
+        ) {
+          errors[path] = issue.message;
+        }
+      }
+      setFieldErrors(errors);
+      setStatus("error");
+      setMessage(copy.formError);
+      return;
+    }
 
     setPending(true);
     setFieldErrors({});
