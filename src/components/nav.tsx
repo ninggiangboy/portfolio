@@ -4,7 +4,6 @@ import { List, X } from "@phosphor-icons/react";
 import Link from "next/link";
 import { useIntlayer, useLocale } from "next-intlayer";
 import { useEffect, useState } from "react";
-import { profile } from "@/lib/data";
 import { CtaLink } from "./cta";
 import { PageScrollProgress } from "./page-scroll-progress";
 import { PageScrollTop } from "./page-scroll-top";
@@ -20,7 +19,7 @@ export function Nav() {
     { label: nav.work, href: `${basePath}#work` },
     { label: nav.experience, href: `${basePath}#experience` },
     { label: nav.now, href: `${basePath}#now` },
-    { label: nav.blog, href: `${basePath}/blog` },
+    { label: nav.blog, href: `${basePath}/notes` },
   ];
 
   useEffect(() => {
@@ -60,7 +59,7 @@ export function Nav() {
               </Link>
             ))}
             <CtaLink
-              href={`mailto:${profile.email}`}
+              href={`${basePath}#contact`}
               label={hero.primaryCta}
               variant="ghost"
             />
@@ -96,7 +95,7 @@ export function Nav() {
               ))}
               <div className="mt-4">
                 <CtaLink
-                  href={`mailto:${profile.email}`}
+                  href={`${basePath}#contact`}
                   label={hero.primaryCta}
                   variant="primary"
                 />

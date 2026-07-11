@@ -1,8 +1,10 @@
 "use client";
 
+import { ArrowUpRight } from "@phosphor-icons/react";
 import Script from "next/script";
 import { useEffect, useRef, useState } from "react";
 import { contactFormSchema } from "@/lib/contact/schema";
+import { profile } from "@/lib/data";
 
 type ContactFormCopy = {
   description: string;
@@ -201,93 +203,120 @@ export function ContactForm({ copy, title }: ContactFormProps) {
         </p>
       </div>
 
-      <form
-        ref={formRef}
-        onSubmit={handleSubmit}
-        className="grid gap-4 rounded-[1.75rem] border border-line bg-background/70 p-5 backdrop-blur md:grid-cols-2 md:p-6"
-        noValidate
-      >
-        <Script
-          src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
-          strategy="afterInteractive"
-          onLoad={() => setScriptReady(true)}
-        />
-
-        <Field
-          error={fieldErrors.name ? copy.nameValidation : undefined}
-          label={copy.nameLabel}
-          name="name"
-          placeholder={copy.namePlaceholder}
-          type="text"
-        />
-        <Field
-          error={fieldErrors.email ? copy.emailValidation : undefined}
-          label={copy.emailLabel}
-          name="email"
-          placeholder={copy.emailPlaceholder}
-          type="email"
-        />
-
-        <label className="sr-only" htmlFor="website">
-          Website
-        </label>
-        <input
-          id="website"
-          name="website"
-          type="text"
-          tabIndex={-1}
-          autoComplete="off"
-          className="absolute -left-[9999px] h-0 w-0 opacity-0"
-          aria-hidden
-        />
-
-        <div className="md:col-span-2">
-          <label
-            htmlFor="message"
-            className="mb-2 block font-mono text-xs uppercase tracking-[0.22em] text-muted"
-          >
-            {copy.messageLabel}
-          </label>
-          <textarea
-            id="message"
-            name="message"
-            rows={7}
-            required
-            minLength={20}
-            maxLength={5000}
-            placeholder={copy.messagePlaceholder}
-            className="w-full rounded-3xl border border-line bg-surface/60 px-4 py-3 text-base text-foreground outline-none transition-colors duration-200 placeholder:text-muted-2 focus:border-accent"
+      <div className="space-y-6">
+        <form
+          ref={formRef}
+          onSubmit={handleSubmit}
+          className="grid gap-4 rounded-[1.75rem] border border-line bg-background/70 p-5 backdrop-blur md:grid-cols-2 md:p-6"
+          noValidate
+        >
+          <Script
+            src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
+            strategy="afterInteractive"
+            onLoad={() => setScriptReady(true)}
           />
-          {fieldErrors.message ? (
-            <p className="mt-2 text-sm text-[color:#b91c1c]">
-              {copy.messageValidation}
+
+          <Field
+            error={fieldErrors.name ? copy.nameValidation : undefined}
+            label={copy.nameLabel}
+            name="name"
+            placeholder={copy.namePlaceholder}
+            type="text"
+          />
+          <Field
+            error={fieldErrors.email ? copy.emailValidation : undefined}
+            label={copy.emailLabel}
+            name="email"
+            placeholder={copy.emailPlaceholder}
+            type="email"
+          />
+
+          <label className="sr-only" htmlFor="website">
+            Website
+          </label>
+          <input
+            id="website"
+            name="website"
+            type="text"
+            tabIndex={-1}
+            autoComplete="off"
+            className="absolute -left-[9999px] h-0 w-0 opacity-0"
+            aria-hidden
+          />
+
+          <div className="md:col-span-2">
+            <label
+              htmlFor="message"
+              className="mb-2 block font-mono text-xs uppercase tracking-[0.22em] text-muted"
+            >
+              {copy.messageLabel}
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              rows={7}
+              required
+              minLength={20}
+              maxLength={5000}
+              placeholder={copy.messagePlaceholder}
+              className="w-full rounded-3xl border border-line bg-surface/60 px-4 py-3 text-base text-foreground outline-none transition-colors duration-200 placeholder:text-muted-2 focus:border-accent"
+            />
+            {fieldErrors.message ? (
+              <p className="mt-2 text-sm text-[color:#b91c1c]">
+                {copy.messageValidation}
+              </p>
+            ) : null}
+          </div>
+
+          <div className="md:col-span-2">
+            <div ref={widgetContainerRef} />
+          </div>
+
+          <div className="md:col-span-2 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <button
+              type="submit"
+              disabled={pending || !siteKey}
+              className="inline-flex h-11 items-center justify-center rounded-full border border-transparent bg-accent px-5 text-sm font-medium text-background transition-colors duration-300 hover:bg-accent-strong disabled:cursor-not-allowed disabled:opacity-60"
+            >
+              {pending ? copy.pending : copy.submit}
+            </button>
+
+            <p
+              aria-live="polite"
+              className={`text-sm ${
+                status === "success" ? "text-accent" : "text-muted"
+              }`}
+            >
+              {message}
             </p>
-          ) : null}
-        </div>
+          </div>
+        </form>
 
-        <div className="md:col-span-2">
-          <div ref={widgetContainerRef} />
-        </div>
+        <div className="flex flex-col gap-4 rounded-[1.75rem] border border-dashed border-line bg-surface/30 p-5 md:flex-row md:items-center md:justify-between md:p-6">
+          <div className="max-w-xl">
+            <p className="font-mono text-xs uppercase tracking-[0.22em] text-muted">
+              Prefer direct email?
+            </p>
+            <p className="mt-2 text-sm leading-relaxed text-muted">
+              If you want to contact me yourself instead of using the form, send
+              an email directly.
+            </p>
+          </div>
 
-        <div className="md:col-span-2 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <button
-            type="submit"
-            disabled={pending || !siteKey}
-            className="inline-flex h-11 items-center justify-center rounded-full border border-transparent bg-accent px-5 text-sm font-medium text-background transition-colors duration-300 hover:bg-accent-strong disabled:cursor-not-allowed disabled:opacity-60"
+          <a
+            href={`mailto:${profile.email}`}
+            className="group inline-flex h-11 shrink-0 items-center justify-center gap-2 rounded-full border border-line px-5 text-sm font-medium text-foreground transition-colors duration-300 hover:border-accent hover:text-accent"
           >
-            {pending ? copy.pending : copy.submit}
-          </button>
-
-          <p
-            aria-live="polite"
-            className={`text-sm ${
-              status === "success" ? "text-accent" : "text-muted"
-            }`}
-          >
-            {message}
-          </p>
+            <span>Email me</span>
+            <ArrowUpRight
+              size={18}
+              weight="bold"
+              aria-hidden
+              className="text-muted-2 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent"
+            />
+          </a>
         </div>
-      </form>
+      </div>
     </div>
   );
 }

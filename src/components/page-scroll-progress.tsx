@@ -9,7 +9,8 @@ function shouldShowProgress(pathname: string | null) {
   }
 
   return (
-    /^\/(en|vi)\/?$/.test(pathname) || /^\/(en|vi)\/blog\/[^/]+$/.test(pathname)
+    /^\/(en|vi)\/?$/.test(pathname) ||
+    /^\/(en|vi)\/notes\/[^/]+$/.test(pathname)
   );
 }
 

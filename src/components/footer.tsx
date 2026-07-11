@@ -44,8 +44,17 @@ export function Footer({ socialOnly = false }: FooterProps) {
           </Reveal>
         )}
 
-        <div className={socialOnly ? "" : "mt-16"}>
-          <SocialLinks />
+        <div
+          className={
+            socialOnly
+              ? ""
+              : "mt-16 lg:grid lg:grid-cols-[minmax(0,18rem)_minmax(0,1fr)]"
+          }
+        >
+          {socialOnly ? null : <div aria-hidden />}
+          <div className={socialOnly ? "" : "lg:px-6"}>
+            <SocialLinks />
+          </div>
         </div>
       </div>
 

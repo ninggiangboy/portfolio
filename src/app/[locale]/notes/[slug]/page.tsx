@@ -39,8 +39,8 @@ export async function generateMetadata({
     alternates: alternateLocale
       ? {
           languages: {
-            [safeLocale]: `/${safeLocale}/blog/${post.slug}`,
-            [alternateLocale]: `/${alternateLocale}/blog/${post.slug}`,
+            [safeLocale]: `/${safeLocale}/notes/${post.slug}`,
+            [alternateLocale]: `/${alternateLocale}/notes/${post.slug}`,
           },
         }
       : undefined,
@@ -81,7 +81,7 @@ function BlogPostContent({
       <section className="border-b border-line">
         <div className="mx-auto flex w-full max-w-[1180px] flex-col gap-6 px-6 py-16 md:px-10 md:py-20">
           <Link
-            href={`/${locale}/blog`}
+            href={`/${locale}/notes`}
             className="font-mono text-sm text-muted transition-colors hover:text-accent"
           >
             {ui.backToBlog}

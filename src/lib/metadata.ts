@@ -8,17 +8,17 @@ const metadataCopy = {
     title: "Ha Duy Khanh | Full-Stack Developer",
     description:
       "Full-stack developer in Hanoi building reliable backend platforms and product interfaces with event-driven architecture and maintainable systems design.",
-    blogTitle: "Blog | Ha Duy Khanh",
+    blogTitle: "Technical Notes | Ha Duy Khanh",
     blogDescription:
-      "Notes on backend architecture, product engineering, and the tradeoffs that shape maintainable software.",
+      "Short technical notes on backend architecture, product engineering, and the tradeoffs behind maintainable software.",
   },
   vi: {
     title: "Ha Duy Khanh | Full-Stack Developer",
     description:
       "Full-stack developer in Hanoi building reliable backend platforms and product interfaces with event-driven architecture and maintainable systems design.",
-    blogTitle: "Blog | Ha Duy Khanh",
+    blogTitle: "Technical Notes | Ha Duy Khanh",
     blogDescription:
-      "Notes on backend architecture, product engineering, and the tradeoffs that shape maintainable software.",
+      "Short technical notes on backend architecture, product engineering, and the tradeoffs behind maintainable software.",
   },
 } as const satisfies Record<
   SiteLocale,
@@ -80,8 +80,8 @@ export function getBlogIndexMetadata(locale: SiteLocale): Metadata {
     description: copy.blogDescription,
     alternates: {
       languages: {
-        en: "/en/blog",
-        vi: "/vi/blog",
+        en: "/en/notes",
+        vi: "/vi/notes",
       },
     },
     openGraph: {

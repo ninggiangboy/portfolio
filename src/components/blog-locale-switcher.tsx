@@ -13,7 +13,7 @@ export function BlogLocaleSwitcher({
 }: BlogLocaleSwitcherProps) {
   const { ui } = useIntlayer("blog");
   const nextLocale = currentLocale === "en" ? "vi" : "en";
-  const href = slug ? `/${nextLocale}/blog/${slug}` : `/${nextLocale}/blog`;
+  const href = slug ? `/${nextLocale}/notes/${slug}` : `/${nextLocale}/notes`;
   const label =
     nextLocale === "en" ? ui.switchToEnglish : ui.switchToVietnamese;
 

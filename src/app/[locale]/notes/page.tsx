@@ -67,7 +67,7 @@ function BlogIndexContent({
                     <div className="space-y-4">
                       <h2 className="max-w-3xl text-2xl font-medium tracking-tight text-foreground md:text-3xl">
                         <Link
-                          href={`/${locale}/blog/${post.slug}`}
+                          href={`/${locale}/notes/${post.slug}`}
                           className="transition-colors hover:text-accent"
                         >
                           {post.title}
@@ -91,7 +91,7 @@ function BlogIndexContent({
 
                     <div className="mt-7">
                       <Link
-                        href={`/${locale}/blog/${post.slug}`}
+                        href={`/${locale}/notes/${post.slug}`}
                         className="font-mono text-sm text-accent transition-colors hover:text-accent-strong"
                       >
                         {ui.readArticle}

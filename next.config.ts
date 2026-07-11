@@ -9,6 +9,20 @@ if (process.env.NODE_ENV === "development") {
 
 const nextConfig: NextConfig = {
   reactCompiler: true,
+  async redirects() {
+    return [
+      {
+        source: "/:locale(en|vi)/blog",
+        destination: "/:locale/notes",
+        permanent: true,
+      },
+      {
+        source: "/:locale(en|vi)/blog/:slug",
+        destination: "/:locale/notes/:slug",
+        permanent: true,
+      },
+    ];
+  },
   images: {
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",

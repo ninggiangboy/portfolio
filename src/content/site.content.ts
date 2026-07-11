@@ -27,7 +27,7 @@ const siteContent = {
       work: t({ en: "Work", vi: "Work" }),
       experience: t({ en: "Experience", vi: "Experience" }),
       now: t({ en: "Now", vi: "Now" }),
-      blog: t({ en: "Blog", vi: "Blog" }),
+      blog: t({ en: "Notes", vi: "Notes" }),
       openMenu: t({ en: "Open menu", vi: "Open menu" }),
       closeMenu: t({ en: "Close menu", vi: "Close menu" }),
     },
@@ -37,8 +37,8 @@ const siteContent = {
         vi: "I build backend systems that scale with clarity and the product interfaces that make them useful. My work centers on event-driven architecture, strong boundaries, and software teams can keep moving inside.",
       }),
       primaryCta: t({
-        en: "Email me",
-        vi: "Email me",
+        en: "Contact me",
+        vi: "Contact me",
       }),
       secondaryCta: t({
         en: "View work",

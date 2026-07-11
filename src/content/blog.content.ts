@@ -4,24 +4,24 @@ const blogContent = {
   key: "blog",
   content: {
     intro: {
-      eyebrow: t({ en: "Blog", vi: "Blog" }),
+      eyebrow: t({ en: "Technical Notes", vi: "Technical Notes" }),
       title: t({
-        en: "Writing on systems, product, and craft",
-        vi: "Writing on systems, product, and craft",
+        en: "Short notes on systems, product, and engineering craft",
+        vi: "Short notes on systems, product, and engineering craft",
       }),
       description: t({
-        en: "Notes on backend architecture, product engineering, and the tradeoffs that shape maintainable software.",
-        vi: "Notes on backend architecture, product engineering, and the tradeoffs that shape maintainable software.",
+        en: "Brief technical notes on backend architecture, product engineering, and the tradeoffs that shape maintainable software.",
+        vi: "Brief technical notes on backend architecture, product engineering, and the tradeoffs that shape maintainable software.",
       }),
-      visitBlog: t({ en: "Visit blog", vi: "Visit blog" }),
+      visitBlog: t({ en: "Browse notes", vi: "Browse notes" }),
     },
     ui: {
-      backToBlog: t({ en: "Back to blog", vi: "Back to blog" }),
-      readArticle: t({ en: "Read article", vi: "Read article" }),
+      backToBlog: t({ en: "Back to notes", vi: "Back to notes" }),
+      readArticle: t({ en: "Read note", vi: "Read note" }),
       publishedOn: t({ en: "Published", vi: "Published" }),
       emptyState: t({
-        en: "No posts available for this locale yet.",
-        vi: "No posts available for this locale yet.",
+        en: "No notes available for this locale yet.",
+        vi: "No notes available for this locale yet.",
       }),
       tocTitle: t({ en: "On this page", vi: "On this page" }),
       scrollToTopLabel: t({ en: "Back to top", vi: "Back to top" }),

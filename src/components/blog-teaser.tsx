@@ -11,7 +11,7 @@ export function BlogTeaser({ locale }: BlogTeaserProps) {
   const { intro } = useIntlayer("blog");
 
   return (
-    <section id="blog" className="scroll-mt-20 border-t border-line">
+    <section id="notes" className="scroll-mt-20 border-t border-line">
       <div className="mx-auto max-w-[1400px] px-6 py-24 md:px-10 md:py-32">
         <Reveal>
           <div className="grid grid-cols-1 gap-10 md:grid-cols-12 md:gap-6">
@@ -30,7 +30,7 @@ export function BlogTeaser({ locale }: BlogTeaserProps) {
                   {intro.description}
                 </p>
                 <div>
-                  <CtaLink href={`/${locale}/blog`} label={intro.visitBlog} />
+                  <CtaLink href={`/${locale}/notes`} label={intro.visitBlog} />
                 </div>
               </div>
             </div>
