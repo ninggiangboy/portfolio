@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <rect width="32" height="32" rx="7" fill="#0a0a0b" />
+  <g fill="none" stroke="#4d7c0f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M7 6 V26" />
+    <path d="M15 6 V26" />
+    <path d="M7 16 H15" />
+    <path d="M15 16 L26 5" />
+    <path d="M15 16 L26 27" />
+  </g>
+  <style>
+    @media (prefers-color-scheme: dark) {
+      g {
+        stroke: #bef264;
+      }
+    }
+  </style>
+</svg>
